@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Converter - Mufasa System</title>
+    <style>
+     
+        body {
+            background-color: gray;
+            color: black;
+            padding: 0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            transition: background 0.3s, color 0.3s;
+        }
+
+     
+        body.dark-mode {
+            background-color: #1a1a1a !important;
+            color: white !important;
+        }
+
+        nav { 
+            background-color: green;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        nav button {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: none;
+            background: white;
+            cursor: pointer;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .full-converter-container {
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .main-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+            color: black;
+        }
+
+        body.dark-mode .main-card {
+            background: #2d2d2d;
+            color: white;
+        }
+
+        input, select, .convert-all-btn {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .convert-all-btn {
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .convert-all-btn:hover { background: darkblue; }
+
+     
+        .currency-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            border-bottom: 4px solid #1a73e8;
+            color: black;
+        }
+
+        body.dark-mode .currency-card {
+            background: #333;
+            color: white;
+            border-bottom: 4px solid #4dadff;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <button><a href="Home.html" class="lang-key" data-en="HOME" data-rw="AHABANZA" data-fr="ACCUEIL">HOME</a></button>
+    <button><a href="Full Converter.html" class="lang-key" data-en="Full Converter" data-rw="Guhindura Byose" data-fr="Convertisseur">Full Converter</a></button>
+    <button><a href="Currency Details.html" class="lang-key" data-en="Currency Details" data-rw="Ibiranga Amadovize" data-fr="Détails">Currency Details</a></button>
+    <button><a href="History.html" class="lang-key" data-en="History" data-rw="Amateka" data-fr="Historique">History</a></button>
+    <button><a href="Setting.html" class="lang-key" data-en="Setting" data-rw="Igenamiterere" data-fr="Paramètres">Setting</a></button>
+</nav>
+
+<div class="full-converter-container">
+    <h2 style="text-align: center; color: blue;" class="lang-key" data-en="Global Currency Converter" data-rw="Ihinduranyaburanga ry'Isi" data-fr="Convertisseur de Devises Mondial">Global Currency Converter</h2>
+    <p style="text-align: center;" class="lang-key" data-en="Convert between world currencies with real-time accuracy." data-rw="Vunja amadovize yose y'isi ukanze rimwe." data-fr="Convertissez entre les devises du monde avec précision.">Convert between world currencies with real-time accuracy.</p>
+
+    <div class="main-card">
+        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+            <input type="number" id="fullAmount" placeholder="Amount" style="flex: 1;">
+            
+            <select id="fullFrom">
+                <option value="USD">🇺🇸 USD - US Dollar</option>
+                <option value="EUR">🇪🇺 EUR - Euro</option>
+                <option value="GBP">🇬🇧 GBP - British Pound</option>
+                <option value="RWF">🇷🇼 RWF - Rwandan Franc</option>
+                <option value="KES">🇰🇪 KES - Kenyan Shilling</option>
+                <option value="UGX">🇺🇬 UGX - Ugandan Shilling</option>
+                <option value="TZS">🇹🇿 TZS - Tanzanian Shilling</option>
+                <option value="ZAR">🇿🇦 ZAR - SA Rand</option>
+                <option value="CNY">🇨🇳 CNY - Chinese Yuan</option>
+                <option value="JPY">🇯🇵 JPY - Japanese Yen</option>
+            </select>
+
+            <button onclick="fullConvert()" class="convert-all-btn lang-key" data-en="Convert All" data-rw="Vunja Yose" data-fr="Tout Convertir">Convert All</button>
+        </div>
+    </div>
+
+    <h3 style="margin-top: 40px; text-align: center;" class="lang-key" data-en="Conversion Results" data-rw="Ibyavuye mu mibare" data-fr="Résultats de Conversion">Conversion Results</h3>
+    <div id="resultsGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+        <div id="empty-msg" class="lang-key" style="text-align: center; grid-column: 1/-1;" data-en="Enter amount to see results" data-rw="Andika umubare urebe ibivamo" data-fr="Entrez le montant pour voir les résultats">Enter amount to see results</div>
+    </div>
+</div>
+
+<script>
+    const fullRates = {
+        USD: 1, EUR: 0.92, GBP: 0.78, RWF: 1300, KES: 131, 
+        UGX: 3850, TZS: 2550, ZAR: 18.90, CAD: 1.35, CNY: 7.20, JPY: 151
+    };
+
+    function fullConvert() {
+        const amount = document.getElementById("fullAmount").value;
+        const from = document.getElementById("fullFrom").value;
+        const grid = document.getElementById("resultsGrid");
+        const lang = localStorage.getItem("selectedLang") || "en";
+
+        if (!amount || amount <= 0) {
+            const alerts = { en: "Please enter a valid amount", rw: "Andika umubare ukwiye", fr: "Entrez un montant valide" };
+            alert(alerts[lang]);
+            return;
+        }
+
+        grid.innerHTML = ""; 
+
+        for (let currency in fullRates) {
+            if (currency !== from) {
+                const converted = (amount / fullRates[from]) * fullRates[currency];
+                const card = document.createElement("div");
+                card.className = "currency-card"; 
+                
+                card.innerHTML = `
+                    <div style="font-weight: bold; color: #777; margin-bottom: 8px;">${currency}</div>
+                    <div style="font-size: 1.4em; font-weight: 800;">
+                        ${converted.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                    </div>
+                `;
+                grid.appendChild(card);
+            }
+        }
+    }
+
+   
+    function applySettings() {
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+        } else {
+            document.body.classList.remove("dark-mode");
+        }
+
+        const lang = localStorage.getItem("selectedLang") || "en";
+        const elements = document.querySelectorAll('.lang-key');
+        elements.forEach(el => {
+            const translation = el.getAttribute(`data-${lang}`);
+            if (translation) el.innerText = translation;
+        });
+
+        const placeholders = { en: "Amount", rw: "Umubare", fr: "Montant" };
+        document.getElementById("fullAmount").placeholder = placeholders[lang];
+    }
+
+    window.onload = applySettings;
+</script>
+</body> 
+</html>

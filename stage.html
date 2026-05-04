@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Life Clinic Centre</title>
+    <style>
+       
+        body { 
+            font-family: sans-serif; 
+            background: gray; 
+            display: flex; 
+            justify-content: center; 
+            padding: 20px; 
+        }
+        
+        .container { 
+            width: 650px; 
+            background: greenyellow; 
+            border: 2px solid #4CAF50; 
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header { 
+            background: blue; 
+            padding: 15px; 
+            display: flex; 
+            align-items: center; 
+            gap: 15px;
+            border-bottom: 2px solid #999; 
+        }
+
+        .header h1 { color: #00aeef; margin: 0; font-size: 24px; }
+        
+        .content { 
+            display: flex; 
+            padding: 20px; 
+            gap: 20px; 
+        }
+       
+        .sidebar { width: 150px; }
+        .health-tag { 
+            background: #ccc; 
+            color: #6a2c91; 
+            padding: 8px; 
+            font-weight: bold; 
+            font-size: 12px; 
+            text-align: center; 
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .menu-box { 
+            background: #777; 
+            color: white; 
+            padding: 10px; 
+            border-radius: 10px; 
+            font-size: 13px; 
+            line-height: 1.8; 
+        }
+
+        .form-area { flex-grow: 1; }
+        .form-group { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .form-group label { width: 70px; font-weight: bold; font-size: 14px; }
+        
+        input, select { 
+            background: #eee; 
+            border: 1px solid #888; 
+            border-radius: 4px; 
+            padding: 6px; 
+            flex: 1;
+        }
+
+        .btn-add { 
+            background: #4CAF50; 
+            color: white; 
+            border: none; 
+            padding: 10px; 
+            width: 100%; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-weight: bold;
+        }
+        .btn-add:hover { background: #45a049; }
+        
+        table { 
+            background-color: aqua;
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 10px;
+        }
+        
+        th, td { 
+            border: 1px solid #444; 
+            padding: 10px; 
+            text-align: left; 
+        }
+        
+        th { background: #999; color: pink; }
+        td { background: yellowgreen; }
+
+        .waiting { color: red; font-weight: bold; }
+        .done { color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div style="width:80px; height:80px; background:white; border-radius:50%; border:1px solid #000;">
+            <img src="clinic.jpeg" alt="Logo" width="80" height="80" style="border-radius: 50%;">
+        </div>
+        <h1>Simple Life Clinic Centre</h1>
+    </div>
+
+    <div class="content">
+        <div class="sidebar">
+            <div class="health-tag">HEALTH CLINIC</div>
+            <div class="menu-box">
+                • Appointment<br>
+                • Dashboard<br>
+                • Patient<br>
+                • Reports
+            </div>
+        </div>
+
+        <form class="form-area" id="patientForm">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="name" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+                <label>Age:</label>
+                <input type="number" id="age" required>
+            </div>
+            <div class="form-group">
+                <label>Service:</label>
+                <select id="service">
+                    <option value="Suturing">Suturing</option>
+                    <option value="Pharmacy">Pharmacy</option>
+                    <option value="Laboratory">Laboratory</option>
+                    <option value="Vaccination">Vaccination</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Status:</label>
+                <select id="status">
+                    <option value="Waiting">Waiting</option>
+                    <option value="Done">Done</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-add">ADD PATIENT</button>
+        </form>
+    </div>
+
+    <table id="patientTable">
+        <thead>
+            <tr>
+                <th>No & Name</th>
+                <th>Age</th>
+                <th>Service</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            </tbody>
+    </table>
+</div>
+
+<script>
+    const form = document.getElementById('patientForm');
+    const tableBody = document.querySelector('#patientTable tbody');
+    let count = 1;
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const age = document.getElementById('age').value;
+        const service = document.getElementById('service').value;
+        const status = document.getElementById('status').value;
+
+        const row = document.createElement('tr');
+        const statusClass = status.toLowerCase() === 'waiting' ? 'waiting' : 'done';
+
+        row.innerHTML = `
+            <td>${count}. ${name}</td>
+            <td>${age}</td>
+            <td>${service}</td>
+            <td class="${statusClass}">${status}</td>
+        `;
+
+        tableBody.appendChild(row);
+        form.reset();
+        count++;
+    });
+</script>
+
+</body>
+</html>

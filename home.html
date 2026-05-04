@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mufasa Converter - Home</title>
+    <style>
+      
+        body {
+            background-color: gray;
+            color: black;
+            padding: 0;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background 0.3s, color 0.3s;
+        }
+
+      
+        body.dark-mode {
+            background-color: #1a1a1a !important;
+            color: white !important;
+        }
+
+        nav { 
+            background-color: green;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        nav button {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: none;
+            background: white;
+            cursor: pointer;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 40px 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+     
+        .hero { background: #f4f4f4; color: #333; }
+        body.dark-mode .hero { background: #2d2d2d; color: white; }
+
+      
+        table {
+            width: 60%;
+            margin: auto;
+            border-collapse: collapse;
+            background: white;
+            color: black;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode table { background: #333; color: white; }
+        th { background: #333; color: white; padding: 12px; }
+        body.dark-mode th { background: #000; }
+        td { padding: 12px; border-bottom: 1px solid #ddd; }
+
+     
+        .testimonial-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            width: 250px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            color: black;
+        }
+        body.dark-mode .testimonial-card { background: #444; color: white; }
+        
+        .testimonial-section { background: #e9e9e9; }
+        body.dark-mode .testimonial-section { background: #222; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <button><a href="Home.html" class="lang-key" data-en="HOME" data-rw="AHABANZA" data-fr="ACCUEIL">HOME</a></button>
+    <button><a href="Full Converter.html" class="lang-key" data-en="Full Converter" data-rw="Guhindura Byose" data-fr="Convertisseur">Full Converter</a></button>
+    <button><a href="Currency Details.html" class="lang-key" data-en="Currency Details" data-rw="Ibiranga Amadovize" data-fr="Détails">Currency Details</a></button>
+    <button><a href="History.html" class="lang-key" data-en="History" data-rw="Amateka" data-fr="Historique">History</a></button>
+    <button><a href="Setting.html" class="lang-key" data-en="Setting" data-rw="Igenamiterere" data-fr="Paramètres">Setting</a></button>
+</nav>
+
+<section class="hero">
+    <h2 style="font-size: 2.5em;" class="lang-key" data-en="Fast & Reliable Currency Exchange" data-rw="Kuvunja Amafaranga mu buryo bwihuse" data-fr="Échange de devises rapide et fiable">Fast & Reliable Currency Exchange</h2>
+    <p style="font-size: 1.2em;" class="lang-key" data-en="Convert your money instantly with the most accurate market rates." data-rw="Vunja amafaranga yawe ukanze rimwe ukoresheje ibiciro biri ku isoko." data-fr="Convertissez votre argent instantanément avec les taux les plus précis du marché.">Convert your money instantly with the most accurate market rates.</p>
+</section>
+
+<hr>
+
+<section>
+    <h2 style="color: blue;" class="lang-key" data-en="Today's Exchange Rates (1 Unit to RWF)" data-rw="Ibiciro by'Uyu munsi (Agaciro muri RWF)" data-fr="Taux de change d'aujourd'hui (1 unité en RWF)">Today's Exchange Rates (1 Unit to RWF)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="lang-key" data-en="Currency" data-rw="Ifaranga" data-fr="Devise">Currency</th>
+                <th class="lang-key" data-en="Rate" data-rw="Igiciro" data-fr="Taux">Rate</th>
+                <th class="lang-key" data-en="Status" data-rw="Imiterere" data-fr="Statut">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>🇺🇸 USD (Dollar)</td>
+                <td>1,300 RWF</td>
+                <td style="color: green;" class="lang-key" data-en="▲ Up" data-rw="▲ Cyazamutse" data-fr="▲ En hausse">▲ Up</td>
+            </tr>
+            <tr>
+                <td>🇪🇺 EUR (Euro)</td>
+                <td>1,410 RWF</td>
+                <td style="color: red;" class="lang-key" data-en="▼ Down" data-rw="▼ Cyamanutse" data-fr="▼ En baisse">▼ Down</td>
+            </tr>
+            <tr>
+                <td>🇬🇧 GBP (Pound)</td>
+                <td>1,650 RWF</td>
+                <td style="color: green;" class="lang-key" data-en="▲ Up" data-rw="▲ Cyazamutse" data-fr="▲ En hausse">▲ Up</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<hr>
+
+<section class="testimonial-section">
+    <h2 style="color: blue;" class="lang-key" data-en="What Our Users Say" data-rw="Icyo abakoresha sisitemu bavuga" data-fr="Ce que disent nos utilisateurs">What Our Users Say</h2>
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+        <div class="testimonial-card">
+            <p><i>"The fastest converter I have ever used. Accurate and very simple!"</i></p>
+            <p><strong>- Jean Bosco N.</strong></p>
+        </div>
+        <div class="testimonial-card">
+            <p><i>"I love the History feature, it helps me track my previous exchanges."</i></p>
+            <p><strong>- Alice M.</strong></p>
+        </div>
+    </div>
+</section>
+
+<script>
+
+function applySettings() {
+    
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+    } else {
+        document.body.classList.remove("dark-mode");
+    }
+
+    const lang = localStorage.getItem("selectedLang") || "en";
+    const elements = document.querySelectorAll('.lang-key');
+    elements.forEach(el => {
+        const translation = el.getAttribute(`data-${lang}`);
+        if (translation) {
+            el.innerText = translation;
+        }
+    });
+}
+
+window.onload = applySettings;
+</script>
+</body>
+</html>
